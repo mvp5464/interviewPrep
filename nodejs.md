@@ -18,7 +18,7 @@
 
 - async function
   - After the result is ready it put msg to event queue.
-  - Node is Continuously monitoring this even queue.
+  - Node is Continuously monitoring this event queue.
 
 ```bash
 # MODULE WRAPPER FUNCTION
@@ -106,7 +106,7 @@ path.resolve("/a", "/b", "/c"); #    C:\c
 const os = require("os");
 console.log( os.arch()); # x64 => Returns the operating system CPU architecture
 console.log( os.hostname()); # mahesh5464 => Returns the hostname of the operating system
-console.log( os.freemem()); # 3112697856 => Returns the number of free memory of the system
+console.log( os.freemem()); # 3112697856 => Returns the number of free memory of the system (3737464832 now)
 console.log( os.totalmem()); # 8181628928 => Returns the number of total memory of the system
 console.log( os.cpus()); # [{},{}] => Returns an array containing information about the computer's CPUs
 console.log( os.networkInterfaces()); # [{},{}] => Returns the network interfaces that has a network address
@@ -164,7 +164,7 @@ const emitter = new EventEmitter();
 //--> Register a listener. "on" and "addListener" both are almost same so use on
 emitter.on("messageLogged", () => {
   console.log("m");
-}); # It takes two argument 1. name of the event and 2. callback function (actual listener)
+ }); # It takes two argument 1. name of the event and 2. callback function (actual listener)
 
 //--> Raise an event
 emitter.emit("messageLogged"); # It will create a event with this "messageLogged" name

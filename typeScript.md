@@ -154,8 +154,8 @@ enum CardinalDirections {
 }
 console.log(CardinalDirections.North);  # 0
 console.log(CardinalDirections.East);   # 1
-console.log(CardinalDirections.["South"]);  # 2 # You can also call it this way
-console.log(CardinalDirections.["West"]);   # 3
+console.log(CardinalDirections["South"]);  # 2 # You can also call it this way
+console.log(CardinalDirections["West"]);   # 3
 console.log(CardinalDirections[1]);        # East
 console.log(CardinalDirections[3]);        # West
 console.log(CardinalDirections[0]);        # North
@@ -208,7 +208,7 @@ console.log(CardinalDirections["North"]);     # myNorth
 console.log(CardinalDirections["East"]);      # myEast
 console.log(CardinalDirections.South);        # mySouth
 console.log(CardinalDirections.West);         # myWest
-console.log(CardinalDirections["MyWest"]);    # West  #YOU CAN'T CALL BY VALUES (CAN DO IN NUM)
+console.log(CardinalDirections["MyWest"]);    # ERROR  #YOU CAN'T CALL BY VALUES (CAN DO IN NUM)
 
 ```
 
@@ -420,7 +420,7 @@ const addAge: FuncitonType = (age) => {
 
 ```bash
 
-1. Casting with as
+1. Casting with "as" keyword
 
 let x: unknown = "hello";
 console.log((x as string).length);

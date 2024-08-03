@@ -22,7 +22,7 @@
 
 ```
 
-- React JSX
+- React JSX (JavaScript XML)
   - JSX allows you to write HTML tags inside the JavaScript code:
   - The HTML code must be wrapped in ONE top level element.
     - you can use a "fragment"(<></>.) to wrap multiple lines.

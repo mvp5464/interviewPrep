@@ -1109,6 +1109,7 @@ export default function Page() {
   )
 }
 # OR YOU CAN IMPORT FROM DIFFERENT FILE
+
 # app/client-component.tsx
 'use client'
 import { updateUser } from './actions'
