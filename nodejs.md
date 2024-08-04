@@ -4,14 +4,14 @@
 - it allows you to run JavaScript on the server.
 - Node should not be used to cpu intensive application, it should be used for data intensive and real time application.- Good for I/O (input/output) operations.
 - In node there is no window objects. It's only available for browser.
-- There are some global objects for js, which works for both node and browser like console, setTimeout, etc.
-- In browser we have window object, and in node we have global object. So we can prefix every thing in it - (You can remove window or global from prefix)
+- There are some global objects[native objects] for js, which works for both node and browser like console, setTimeout, etc.
+- [host objects] In browser we have window object, and in node we have global object. So we can prefix every thing in it - (You can remove window or global from prefix)
 - Eg. Window.console.log() - In browser console.log is prefixed by window.
 - Global.console.log() - In node it is prefixed by global.
 
   - Variable and function, which are defined In nodejs has file scope (and not the global scope) and cannot be called with global.
   - But can be accessed by window in browser
-  - Eg. Var x = 1;
+  - Eg. Var x = 1; [not let or const]
   - Global.x will give undefined
   - Window.x will give 1
     How docker is different from virtual machine
@@ -164,7 +164,7 @@ const emitter = new EventEmitter();
 //--> Register a listener. "on" and "addListener" both are almost same so use on
 emitter.on("messageLogged", () => {
   console.log("m");
- }); # It takes two argument 1. name of the event and 2. callback function (actual listener)
+ }); # It takes two argument 1. name of the event(to listen) and 2. callback function (actual listener)
 
 //--> Raise an event
 emitter.emit("messageLogged"); # It will create a event with this "messageLogged" name
@@ -337,8 +337,26 @@ app.get('/example/d', [cb0, cb1], (req, res, next) => {
   res.send('Hello from D!') # This is executed the response is send
 })
 
+---------------> R..
+
+
+function inputCheck(req, res, next1) {
+  const username = req.headers.username;
+  const password = req.headers.password;
+
+
+# https://abc.com/user?kidneyId -> query params
+  const kidneyId = req.query.kidneyId;
+
+# https://abc.com/myFile --> dynamic params
+ app.get("/file/:filename", function (req, res) {
+   const filepath = myFile
+
+
 
 ---------------> RESPONSE METHODS
+
+
 # Send a response object(res) to the client to terminate the request-response cycle
 # If none of these methods are called from a route handler, the client request will be left hanging.
 
