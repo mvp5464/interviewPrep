@@ -17,8 +17,8 @@
 - let x = "5" + 2 + 3; # 523
 - let x = 2 + 3 + "5"; # 55
 
-console.log("2", 2)
-console.log("2"+ 2)
+console.log("2", 2); # 2 2 -> first one is string and second one is number
+console.log("2" + 2); # 22 -> both are number
 
 let text1 = "A";
 let text2 = "B";
@@ -111,9 +111,20 @@ myObj["myCars"].car2;
 
 # accessing object method
 name = person.fullName();
+
+# CHECKING WHETHER A PROPERTY EXISTS ON AN OBJECT OR NOT
+const person = {
+  name: "John",
+  age: 30,
+};
+console.log("name" in person); // true
+console.log(person.hasOwnProperty("age")); // true
+console.log(Object.hasOwn(person, "name")); // true
+console.log(person.address !== undefined); // false
+
 ```
 
-- Objects are mutable: They are addressed by reference, not by value.
+- Objects are mutable: They are addressed by reference, not by value. [same as array]
 
 ```bash
 // Create an Object
@@ -157,6 +168,13 @@ JSON.stringify(person)
 
 # Find a length of object
 const size = Object.keys(person).length;
+
+#
+Object.keys(person) # will give array of keys
+#
+for (let x of person.keys()) {
+  console.log(x); # 0,1,2,3
+}
 ```
 
 - Object Constructor:
@@ -325,9 +343,9 @@ let z = x + y; # return 10010 (work as string)
 - NaN - Not a Number && Infinity
 
 ```bash
-let x = 100 / "Apple"; # NaN
-isNaN(x); # true
-typeof NaN; # number # NaN is a number
+let x = 100 / "Apple";                                # NaN
+isNaN(x);                                             # true
+typeof NaN;                                           # number # NaN is a number
 let x =  2 / 0; # Infinity # Infinity is a number
 
 let x = 0xFF; # x = 255 # write 0x to before to write hexadecimal number
@@ -366,11 +384,11 @@ Number.isSafeInteger(12345678901234567890); # returns false
 
 # REVISE
 const x = 223.24;
-Number.isFinite(x); #(true) Checks whether a value is a finite number
-Number.isInteger(x); #(false) Checks whether a value is an integer
-Number.isNaN(x); #(false) Checks whether a value is Number.NaN
-Number.parseFloat(x); #(223.24) Parses a string an returns a number
-Number.parseInt(x); #(223) 	Parses a string an returns a whole number
+Number.isFinite(x);                     #(true) Checks whether a value is a finite number
+Number.isInteger(x);                    #(false) Checks whether a value is an integer
+Number.isNaN(x);                        #(false) Checks whether a value is Number.NaN
+Number.parseFloat(x);                   #(223.24) Parses a string an returns a number
+Number.parseInt(x);                     #(223) 	Parses a string an returns a whole number
 x.toFixed(4); #(223.2400) [ONLY NUMBERS][ROUND-VALUE] 4 numbers of digits after decimal point
 x.toPrecision(4); #(223.2) [ONLY NUMBERS][ROUND-VALUE] Total 4 numbers with or without decimal
 x.toString(10); #(223.24) Converts a number to a string -OPTINAL (BASE CONVERSION (2 to 32))- radix
@@ -417,14 +435,14 @@ Number("10 33");                                                            # Na
 Number("John");                                                             # NaN
 
 # parses string to whole number. Spaces are allowed. Only the first number is returned:
-parseInt("-10");                    # -10
-parseInt("-10.33");                 # -10
-parseInt("10");                     # 10
-parseInt("10.33");                  # 10
-parseInt("10 20 30");               # 10
-parseInt("10 years");               # 10
-parseFloat("10,10 years");          # 10
-parseInt("years 10");               # NaN
+parseInt("-10");                                                            # -10
+parseInt("-10.33");                                                         # -10
+parseInt("10");                                                             # 10
+parseInt("10.33");                                                          # 10
+parseInt("10 20 30");                                                       # 10
+parseInt("10 years");                                                       # 10
+parseFloat("10,10 years");                                                  # 10
+parseInt("years 10");                                                       # NaN
 
 Number("10  10");                                                           # NaN
 parseInt("10  10");                                                         # 10
@@ -451,7 +469,8 @@ parseFloat("10,10 years");          # 10
 parseFloat("years 10");             # NaN
 
 # The Date() method returns the number of milliseconds since 1.1.1970.
-Number(new Date("1970-01-01")) # It returns nothing as it is before the date
+Number(new Date("1969-12-31")) # -86400000
+Number(new Date("1970-01-01")) # 0
 Number(new Date("1970-01-02")) # 86400000
 Number(new Date("2017-09-30")) # 1506729600000
 
@@ -542,6 +561,10 @@ const myChildren = arr1.concat("Peter"); #
 const fruits = ["Banana", "Orange", "Apple", "Mango", "Kiwi"];
 fruits.copyWithin(2, 0);
 fruits.copyWithin(2, 0, 2);
+array.copyWithin(target, start, end)
+# target: The index (position) to copy the elements to.
+# start: The start index (position). Default is 0.
+# end: The end index (position). Default is the array length.
 
 # method overwrites the existing values + does not add items to the array + does not change the length of the array
 
@@ -558,7 +581,7 @@ const newArr = myArr.flat(Infinity); # [ 1, 2, 3, 4, 5, 6, 7 ]
 
 
 const fruits = ["Banana", "Orange", "Apple", "Mango"];
-fruits.splice(2, 0, "Lemon", "Kiwi"); # (start, deleteCount, ...items)
+fruits.splice(2, 0, "Lemon", "Kiwi"); # (start, deleteCount, ...items). IT WILL ADD ONLY
 fruits.splice(3, 1); # here 1 item from 3rd position will be removed from the array
 # Splice method modifies the original array and returns the deleted array.
 
@@ -603,7 +626,7 @@ fruits.reverse(); # It will reverse the whole array
 # So by combining both we can get array in descending order
 
 #For descending Order # USE BUILD IN METHODS IF POSSIBLE (ABOVE AVOID THIS)
-const sorted = fruits.sort((a, b) => b.localeCompare(a));
+const sorted = fruits.sort((a, b) => b.localeCompare(a)); # USE a.localeCompare(b) to compare alphabetically
 
 const sorted = fruits.toSorted(); # THIS WILL CREATE A NEW ARRAY WITHOUT ALTERING ORIGINAL
 const sorted = fruits.toReversed(); # THIS WILL CREATE A NEW ARRAY WITHOUT ALTERING ORIGINAL
@@ -613,7 +636,7 @@ points.sort(function(a, b){return a - b}); # [ 1, 5, 10, 25, 40, 100 ] # numeric
 
 const points = [ 40, 100, 1, 5, 25, 10 ];
 points.sort(function(a, b){return b - a}); # [ 100, 40, 25, 10, 5, 1 ] # numerical sort
-# Function used to determine the order of the elements. It is expected to return a negative value if the first argument is less than the second argument, zero if they're equal, and a positive value otherwise. If omitted, the elements are sorted in ascending, ASCII character order.
+# Function used to determine the order of the elements. It is expected to return a negative value if the first argument is less than the second argument, zero if they're equal, and a positive value otherwise. If omitted, the elements are sorted in ascending, ASCII character order. [ -1 then don't change, 1 then chage]
 
 # SAME AS ABOVE BUT CUSTOM SORTING FUNCTION
 points.sort((a, b) => {
@@ -658,7 +681,7 @@ items.sort((a, b) => {
   } else if (!aIsNumber && bIsNumber) {
     return 1; # letters should be sorted after numbers (change)
   } else if (aIsNumber && bIsNumber) {
-    return a - b; # sort numbers numerically
+    return a - b; # sort numbers numerically (wil return -ve or +ve value)
   } else {
     return a.localeCompare(b); # sort letters alphabetically
   }
@@ -685,8 +708,9 @@ function myArrayMax(arr) {
 
 ```bash
 
-# ---------------> map, filter, reduce, foreach,..
-# --> some(), every(), include(),
+# ---------------> map, filter, reduce,[this 3 returns new array], -
+# foreach -> It does not return a new array and does not modify the original array.
+# --> some(), every(), include(), -> methods do not create or return a new array; they return a boolean value and do not modify the original array.
 const arr = [1, 2, 3, 4, 5];
 
 # forEach will not return the result after doing any operation init
@@ -716,7 +740,7 @@ const fil4 = arr.filter((i) => i % 2 === 0);
 # Its a wrong way to write reduce -> BELOW GIVEN TRUE WAY TO WORK WITH REDUCE
 # TAKES 4 ARGUMENTS reduce(previousValue/totalValue, currentValue, currentIndex, array)
 const red1 = arr.reduce((i) => i * 0); # As all element will return false
-const red2 = arr.reduce((i) => i * 1);
+const red2 = arr.reduce((i) => i * 1); # -----> I IS PREVIOUS VALUE AND NOT CURRENT VALUE
 const red3 = arr.reduce((i) => i * 2); # every element will be double starting from 1st element
 const red4 = arr.reduce((i) => i % 2 === 0); # A??? if %6 then why returning true
 
@@ -753,6 +777,12 @@ let sum = numbers.reduce((total, value, index, array) => {
 let sum = numbers.reduceRight((total, value, index, array) => {
   return total + value; # 100 # Same as right but it start from right
 }, 1);
+
+#
+const arr = ["A", "B", "C", "D", "E"];
+const sum = arr.reduce((i, j) => i + j); # ABCDE
+const sum = arr.reduceRight((i, j) => i + j); # EDCBA
+
 # To reverse an array without changing the orginal array
 const originalArray = [1, 2, 3, 4, 5];
 const newArray = originalArray.reduce((accumulator, value) => {
@@ -776,7 +806,7 @@ let result = numbers.some((value, index, array) => {
   # true as some are greater than 18(AS SOME VALUES ARE RETURNING TRUE)
 });
 });
-
+# REVISE
 # returns an Array object from any object with a length property or any iterable object
 Array.from("ABCD"); # [ 'A', 'B', 'C', 'D' ]
 
@@ -896,6 +926,7 @@ new Date().toLocaleDateString() # 6/22/2024
 new Date().toLocaleTimeString() # 4:51:29 PM
 # REVISE
 let msec = Date.parse("March 21, 2012"); # 1332268200000 # To convert date to millisecond
+let msec = new Date("March 21, 2012").getTime(); # 1332268200000 # To convert date to millisecond
 let date = new Date(86400000); # To convert millisecond into date
 ```
 
@@ -991,7 +1022,7 @@ Math.trunc(4.9); # 4
 Math.sign(-4.312) # -1
 Math.sign(0) # 0
 Math.sign(434.312) # 1
-
+# REVISE
 Math.pow(8, 2); # 64 # Math.pow(x, y) returns the value of x to the power of y
 Math.sqrt(64); # 8 # Math.sqrt(x) returns the square root of x
 Math.abs(-4.7); # 4.7 # Math.abs(x) returns the absolute (positive) value of x
@@ -1092,6 +1123,7 @@ car?.name # If value is undefined it won't throw an error
 ```
 
 - Conditional Statements (if, if-else, if-else if, switch)
+
 - The JavaScript Switch Statement
 
 ```bash
@@ -1161,6 +1193,8 @@ switch (x) {
 # while - loops through a block of code while a specified condition is true
 # do/while - Same as while but will run the code atleast ones
 
+1. FOR LOOP
+
 # Expression 1 [OPTIONAL] - (let i = 0;)
 
 # Normally you will use expression 1 to initialize the variable used in the loop (let i = 0).
@@ -1196,7 +1230,7 @@ for (;;) {
 }
 
 # FLOW: EXPRESS -> 1,2,CODE,3,2,CODE,3,2,CODE,3,2,....
-# 1: INITIALIZE, 2: CHECK, 3: INCRESE
+# 1: INITIALIZE, 2: CHECK, 3: INCREASE
 
 ```
 
@@ -1419,7 +1453,7 @@ for (const x of letters.entries()) {
 
 - A Map holds key-value pairs where the keys can be any datatype.
 - A Map remembers the original insertion order of the keys. [WHICH VALUE INSERTED 1ST]
-- Keys are unique ?[YES]
+- Keys are unique ? [ YES ]
 - Maps accept any data type as a key, and do not allow duplicate key values.
 - If duplicate key then the latest/last value is considered (in both map and object)
 
@@ -1605,7 +1639,7 @@ typeof new Array()                            # Returns "object"
 typeof new Date()                             # Returns "object"
 typeof new Set()                              # Returns "object"
 typeof new Map()                              # Returns "object"
-typeof function () {}                         # Returns "function"
+typeof function ( ) {}                        # Returns "function"
 typeof x                                      # Returns "undefined"
 typeof null                                   # Returns "object" # It's an object and not null
 ```
@@ -1613,6 +1647,7 @@ typeof null                                   # Returns "object" # It's an objec
 - JavaScript Type Conversion
 
 ```bash
+# REVISE
 1.----- Converting Strings to Numbers
 - Number(), parseFloat(), parseInt(), +
 
@@ -1661,7 +1696,7 @@ Number(false)                               # returns 0
 Number(true)                                # returns 1
 
 6.----- Converting Booleans to Strings
-
+# REVISE
 String(false)                               # returns "false"
 String(true)                                # returns "true"
 String(null)                                # returns "null"
@@ -1682,13 +1717,13 @@ true.toString()                             # returns "true"
 
 # When tries to get an output to DOM (document.getElementById("demo").innerHTML = myVar;)
 
-myVar = {name:"Fjohn"}  // toString converts to "[object Object]"
-myVar = [1,2,3,4]       // toString converts to "1,2,3,4"
-myVar = new Date()      // toString converts to "Fri Jul 18 2014 09:08:55 GMT+0200"
+myVar = {name:"Fjohn"}            // toString converts to "[object Object]"
+myVar = [1,2,3,4]                 // toString converts to "1,2,3,4"
+myVar = new Date()                // toString converts to "Fri Jul 18 2014 09:08:55 GMT+0200"
 # Numbers and booleans are also converted, but they are not very visible
-myVar = 123             // toString converts to "123"
-myVar = true            // toString converts to "true"
-myVar = false           // toString converts to "false"
+myVar = 123                       // toString converts to "123"
+myVar = true                      // toString converts to "true"
+myVar = false                     // toString converts to "false"
 
 myVar.toString()
 
@@ -1724,8 +1759,9 @@ console.log([[[[0]]]] == false); # ([[0]].valueOf().toString())# true
 console.log(0 == false);                                       # true
 console.log(0 === false);                                      # false
 console.log("0" === false);                                    # false
-console.log(NaN === NaN);
+console.log(NaN === NaN);                                      # false
 
+# REVISE
 # The variables such as objects, arrays and functions comes under pass by reference
 # so comparing them will always returns false
 {} === {}, [] === []
@@ -1805,8 +1841,8 @@ let { [0]:fruit1 ,[2]:fruit2 } = fruits; # Bananas Apples # USE CURLY BRACKETS F
 ----- The Rest Property # can also be used in objects (may be for all iterables)
 
 const numbers = [10, 20, 30, 40];
-const [ a, b, ...rest ] = numbers;
-console.log( a, rest ); # 10 [ 30, 40 ]
+const [ a, b, ...myRest ] = numbers; # REST PROPERTIES SHOULD BE LAST
+console.log( a, myRest ); # 10 [ 30, 40 ]
 
 4. ------- Destructuring Maps
 
@@ -2095,17 +2131,31 @@ for (var a = 0; a < 4; a++) {
 } # 4,4,4,4 # It's 4 and not 3 because a++ increase the value of a and then it compares
 
 # ‘var’ is not block scoped but it is function scoped. So if we run the code below:
+
+---> 1 WILL PRINT 0,1,2,3 -VALUE OF A IS ASSIGNED AT THE TIME OF LOOPING (USING PARAMETERS)
+---> 2 WILL PRINT 0,1,2,3 -VALUE OF A IS ASSIGNED TO INDEX DURING LOOPING (USING VARIABLE)
+---> 3 WILL PRINT 4,4,4,4 -VALUE OF A IS ASSIGNED AT THE TIME OF CALLING (BLOCK SCOPE CHANGED)
+
+#  => 1
 for (var a = 0; a < 4; a++) {
   (function (a) {
-    setTimeout(() => console.log(a), 2000);
+    setTimeout(( ) => console.log(a), 2000); # VALUE OF A IS ASSIGNED AT THE TIME OF LOOPING
   })(a);  # 0,1,2,3 // passing a variable here
 }
 
+#  => 2
 for (var a = 0; a < 4; a++) {
   (function () {
     var index = a; # can use let or const as inside function block all works similar
     setTimeout(() => console.log(index), 2000);
   })();  # 0,1,2,3 // without passing any variable here
+}
+
+#  => 3
+for (var a = 0; a < 4; a++) {
+  (function () {
+    setTimeout(() => console.log(a), 2000);
+  })();  # 4,4,4,4 // without passing any variable here and wihtout assigning value to any variable at the time of looping
 }
 
 # since ‘var’ variables are not block scoped, we did not create a new variable, instead we just re-assigned the existing variable and gave it new value
@@ -2148,7 +2198,7 @@ console.log(a, b, c); # 4 5 undefined
 var b; # Declare b
 var c = 3; # Initialize c # only the declaration (var c), not the initialization (=3) is hoisted to the top. (So undefined)
 
-# ----> let ,const
+# ----> let, const
 
 # Variables defined with let and const are hoisted to the top of the block, but not initialized.
 # Meaning: The block of code is aware of the variable, but it cannot be used until it has been declared.
@@ -2275,14 +2325,14 @@ let fullName = person.fullName.bind(member);
     - Suitable for methods within objects where "this" needs to refer to the object.
     - Useful when "arguments" object is needed.
     - Can be used as constructors.
-    - Can call a function above it is defined
+    - Can call a function above it is defined.
 
   - Arrow Function:
 
     - Ideal for callbacks or functions that do not require their own "this" context.
     - More concise syntax, especially for inline functions.
     - Cannot be used as constructors.
-    - Can't call a function above it is defined
+    - Can't call a function above it is defined.
 
 ```bash
 hello = () => {
@@ -2313,7 +2363,7 @@ const obj = {
     return this.value; // "this" here is not "obj", but the enclosing scope when the arrow function was defined.
   },
 };
-console.log(obj.method()); // undefined (or the value of "this" in the enclosing scope)
+console.log(obj.method( )); // undefined (or the value of "this" in the enclosing scope)
 
 2. arguments Object
 
@@ -2382,7 +2432,7 @@ class Car {
   }
 }
 const myCar = new Car("Ford", 1998); # uses the Car class to create two Car objects
-console.log(myCar.age()); # 26
+console.log(myCar.age( )); # 26
 console.log(myCar.ageAdd(5)); # 31
 
 ```
@@ -2540,7 +2590,7 @@ let x = "Hello" - "Dolly";    // returns NaN and not an error
 function (a=1, b=1) { /*function code*/ } # If value is not passed
 
 
-# End Your Switche block with Defaults
+# End Your Switch block with Defaults
 
 # ==> Avoid creating Number, String, and Boolean as Objects
 # Declaring these types as objects, slows down execution speed, and produces nasty side effects:
@@ -2584,6 +2634,9 @@ let x = 0.1;
 let y = 0.2;
 let z = x + y; # 0.30000000000000004 # the result in z will not be 0.3
 let z = (x * 10 + y * 10) / 10; # 0.3       // z will be 0.3
+
+console.log(0.1 + 0.2 === 0.3);                           # false
+console.log(0.1 + 0.2 == 0.3);                            # false
 
 # Breaking a JavaScript String (using \)
 let x = "Hello \
@@ -2663,6 +2716,7 @@ console.log(firstName + " " + lastName);
   - Using Object.fromEntries()
 
 ```bash
+# REVISE^
 1. Using an Object Literal
 2. Using the new Keyword
 
@@ -2743,7 +2797,7 @@ Object.keys(object)
 Object.values(object)
 
 # Groups object elements according to a function
-Object.groupBy(object, callback)
+Object.groupBy(object, callback) # NEW SO AVOID NOW AS BROWSERS MAY NOT SUPPORT IT
 
 1. ==> Object.assign(target, source) # Copies properties from a source object to a target object
 
@@ -2755,9 +2809,10 @@ const person1 = {
   eyeColor: "blue"
 };
 # Create Source Object
-const person2 = {firstName: "Anne",lastName: "Smith"};
+const person2 = { firstName: "Anne", lastName: "Smith", country: "India" };
 # Assign Source to Target
-Object.assign(person1, person2); # { firstName: 'Anne', lastName: 'Smith', age: 50, eyeColor: 'blue' } #-> firstName and lastName is replaced in person1
+Object.assign(person1, person2);
+console.log(persion1) # { firstName: 'Anne', lastName: 'Smith', age: 50, eyeColor: 'blue', country: "India" }
 
 # USE OBJECT.ASSIGN TO CREATE A COPY OF OBJECT BY VALUE INSTEAD OF REFERANCE
 #@@@ But be aware this is a shallow copy - nested objects are still copied as reference.
@@ -2767,7 +2822,7 @@ const y = x; # IT IS COPIED BY REFERANCE
 const z = Object.assign( {}, x); # IT IS COPIED BY VALUE
 console.log(x, y, z); # { a: 'me', b: 'you' } { a: 'me', b: 'you' } { a: 'me', b: 'you' }
 delete x.a;
-console.log(x, y, z); # { b: 'you' } { b: 'you' } { a: 'me', b: 'you' }
+console.log(x, y, z); # { b: 'you' } { b: 'you' } { a: 'me', b: 'you' } -> [a value is not deleted in z obj]
 
 
 2. ==> Object.create(object)   # Creates an object from an existing object
@@ -2857,7 +2912,7 @@ for (let x in person) {
 
 ```
 
-2. Property Management Methods -----------
+2. Property Management Methods ----------- NEED TO COMPLETE IT
 
 ```bash
 
@@ -3076,14 +3131,14 @@ let text = myFunction.toString(); # give whole function as string
 # Arrow functions allows a short syntax for writing function expressions.
 # Arrow functions do not have their own this. They are not well suited for defining object methods.(funciton(name){this.name=name})
 # Arrow functions are not hoisted. They must be defined before they are used.
-# Duplicate parameter name not allowed in arrow function in any mode, strict or non-strict
+# Duplicate parameter name not allowed in arrow function in any mode, strict or non-strict @@@@@@
 # ( allowed in function expression and function declaration in non-strict mode)
 # Arrow functions do not have an arguments, super, this, or new.target bindings.
 
 const x = (x, y) => { return x * y };
 console.log(x(2, 5));
 
-# You can only omit the return keyword and the curly brackets if the function is a single statement.
+# You can also omit the return keyword and the curly brackets if the function is a single statement.
 const x = (x, y) => x * y;
 console.log(x(2, 5));
 
@@ -3137,7 +3192,7 @@ console.log(add(3)(6)); # 9
 
 # EXAMPLE4 - INFINITE CURRYING
 const addInfinitely = (a) => (b) => {
-  if (b) return addInfinitely(a + b); # If any value is passed then return the addInfinitely function and start again
+  if (b) return addInfinitely(a + b); # If any value is passed then return the addInfinitely function and start again -- (so at last pass empty function so that "b" becomes empty and this function returns a)
   return a; # If no value is passed then return the a (ie. the total value till now)
 };
 console.log( addInfinitely(2)(3)(5)()); # 10
@@ -3210,8 +3265,8 @@ myFunction(10, 2);
 # What is "this"?
   # - In an object method, this refers to the object.
   # - Alone, this refers to the global object.
-  # - In a function, this refers to the global object. - OKKKKKK
-  # - In a function, in strict mode, this is undefined. - OKKKKKK
+  # - In a function, this refers to the global object. - @@@@
+  # - In a function, in strict mode, this is undefined. - @@@@
   # - In an event, this refers to the element that received the event.
   # - Methods like call(), apply(), and bind() can refer this to any object.
 
@@ -3325,10 +3380,10 @@ const person = {
 };
 person.greet("Hello"); # "Hello, Alice"
 
-const greet2 = person.greet; # Here the function greet was transfered but not 'this'
+const greet2 = person.greet; # Here the function greet was transfered but not 'this' value
 greet2("Hello"); # undefined, because `this` is not bound to `person`
 
-const greet2 = person.greet.bind(person);
+const greet2 = person.greet.bind(person); # NOW THIS VALUE IS BIND TO PERSON OBJECT
 greet2("Hello"); # "Hello, Alice"
 
 # When a function is used as a callback, "this" is lost.
@@ -3350,7 +3405,7 @@ setTimeout(display, 1000); # John Doe
 ```
 
 - JavaScript Closures
-- A closure is a function having access to the parent scope, even after the parent function has closed.
+- A closure is a function having access to the parent function's scope, even after the parent function has closed.
   - the function defined in the closure ‘remembers’ the environment in which it was created.
   - closure contains any and all local variables that were declared inside the outer enclosing function.
 
@@ -3384,7 +3439,7 @@ Execution context is an abstract concept used by the ECMAScript specification to
 Every execution context has a Lexical Environment. This Lexical environments holds identifier bindings (i.e. variables and their associated values), and also has a reference to its outer environment.
 The set of identifiers that each environment has access to is called “scope.” We can nest these scopes into a hierarchical chain of environments, known as the “scope chain”.
 Every function has an execution context, which comprises of a Lexical Environment that gives meaning to the variables within that function and a reference to its parent’s environment. And so it appears as if the function “remembers” this environment (or scope) because the function literally has a reference to this environment. This is a closure.
-A closure is created every time an enclosing outer function is called. In other words, the inner function does not need to return for a closure to be created.
+A closure is created every time an enclosing outer function is called. In other words, the inner function does not need to return for a closure to be created. @@@@@@@@@
 The scope of a closure in JavaScript is lexical, meaning it’s defined statically by its location within the source code.
 Closures have many practical use cases. One important use case is to maintain a private reference to a variable in the outer scope.
 
@@ -3413,7 +3468,7 @@ console.log(plus());
 
 # Question and Answer
 # when function calling itself then first it increase to 1 then plus() is called so it should become 2 but it start from 1 why ??????????
-# BECAUSE IT IS RETURNING THE FUNCITON EXPRESSION AND NOT CALLING THE FUNCITON. FUNCITON IS ONLY CALLED BY THE PLUS VARIABLE
+# BECAUSE IT IS RETURNING THE FUNCITON EXPRESSION AND NOT CALLING THE FUNCITON. FUNCTION IS ONLY CALLED BY THE PLUS VARIABLE
 
 # ADD MORE CLOSURE EXAMPLES
 
@@ -3447,7 +3502,7 @@ console.time("100");
 newFind(100);
 console.timeEnd("100");
 
-# EXAMPLE 2
+# EXAMPLE 3
 function check() {
   for (var i = 0; i < 3; i++) {
     ((i) => {
@@ -3457,7 +3512,7 @@ function check() {
 }
 check();
 
-# EXAMPLE 3
+# EXAMPLE 4
 function counter() {
   let _counter = 0;
   function add(value = 1) {
@@ -3627,7 +3682,7 @@ https://www.freecodecamp.org/news/javascript-asynchronous-operations-in-the-brow
 callstack (inside js engine) -> webapi -> callback/event queue -> event loop
 
 # JS ENVIRONMENT
-The JavaScript runtime is the environment that contains all the resources necessary for the execution of a JavaScript program. It includes the JavaScript Engine but also includes other things we will look at.
+The JavaScript runtime is the environment that contains all the resources necessary for the execution of a JavaScript program. It includes the JavaScript Engine along with other things we will look at.
 
 # JS ENGINE
 For a browser to interpret JavaScript code, it needs to have a JavaScript engine. This JavaScript engine is a software component of a modern web browser that accepts JavaScript code, analyzes it, and transforms it into instructions the device will understand.
@@ -3646,13 +3701,13 @@ function run() {
 	greeting()
 }
 run()
-# HERE first run() -> greeting() -> console.log("Hello World") is executed
+# HERE first run() -> greeting() -> console.log("Hello World") is called in stack
 # SO THE LAST OPERATION IS EXECUTED FIRST (ie. console.log("Hello World") then> greeting() and then> run())
 
 # WEB APIS
 JavaScript uses the browser’s provided Web Application Programming Interfaces (Web APIs).
 The Web APIs are a set of functions provided by the browser that the JavaScript engine can utilize. They include examples such as Document Object Model (DOM) manipulation methods, fetch, setInterval, setTimeout, promises, async-await functions, and more.
-- IN NODEJS JS OFFLOAD OPERATION TO THE SYSTEMS KERNAL (MOST KERNAL ARE MULTITHREAD SO THEY CAN HANDLE IN THE BACKGROUND)
+- NODEJS OFFLOAD OPERATION TO THE SYSTEMS KERNAL (MOST KERNAL ARE MULTITHREAD SO THEY CAN HANDLE IN THE BACKGROUND)
 - The JavaScript Engine interacting with the Web APIs inside the JavaScript Runtime
 
 # CALLBACK
@@ -3669,7 +3724,7 @@ fetch("<https://jsonplaceholder.typicode.com/users>")
 # Here, the 1st "then" function will be executed after the response from fetch.
 # And 2nd "then" function will be executed after the 1st "then" (another asyn function)
 
-# CALLBACK QUEUE
+# CALLBACK QUEUE / EVENT QUEUE
 The callback queue is a software mechanism that stores callback functions to be run after the Web APIs have processed asynchronous functions. It uses the queue data structure which works with the First In First Out (FIFO) approach. This means that the first callback added to that queue is going to be the first callback to leave.
 
 - The JavaScript Engine interacting with the Web APIs AND AFTER THEIR EXECUTION THEY PUSH CALLBACK TO THE CALLBACK QUEUE, EVERTHING HAPPENS inside the JavaScript Runtime
@@ -3685,10 +3740,6 @@ console.log('C')
 // A
 // C
 // B
-
-```
-
-```bash
 
 console.log("1"); # first this will be printed
 setTimeout(( ) => console.log("I will"), 2000);  # third(Last) this will be printed
@@ -3728,7 +3779,8 @@ myPromise.then(
   () => console.log("reject")
 );
 
--> A JavaScript Promise object can be: (myPromise.state -- myPromise.result)
+-> A JavaScript Promise object can be:
+    # (myPromise.state -- myPromise.result)
     # Pending -- the result is undefined
     # Fulfilled -- then the result is a value.
     # Rejected -- then the result is an error object.
@@ -3736,6 +3788,9 @@ myPromise.then(
 # You must use a Promise method to handle promises. (myPromise.then().catch()..)
 
 #--> PROMISE VS CALLBACK
+
+# REVISE
+# CHATGTP IS SAYING THAT THIS CODE SHOULD GIVE ERROR BUT THIS CODE IS NOT GIVING ERROR
 
 # CALLBACK
 setTimeout(() => myFunction("I love You !!!"), 2000);
@@ -3784,6 +3839,15 @@ var promise2 = new Promise(function (resolve, reject) {
 Promise.race([promise1, promise2]).then(function (value) {
   console.log(value); // "two" // Both promises will resolve, but promise2 is faster
 });
+
+# PROMISE.ALLSETTLE VS PROMISE.ALL
+const promiseOne = new Promise((resolve, reject) => setTimeout(resolve, 4000));
+const promiseTwo = new Promise((resolve, reject) => setTimeout(reject, 4000));
+
+Promise.all([promiseOne, promiseTwo]).then((data) => console.log(data));
+Promise.allSettled([promiseOne, promiseTwo]).then((data) => console.log(data));
+
+# The above promises settled at the same time but one of them resolved and other one rejected. When you use .all method on these promises, the result will be short circuted by throwing an error due to rejection in second promise. But If you use .allSettled method then result of both the promises will be returned irrespective of resolved or rejected promise status without throwing any error.
 ```
 
 - JavaScript Async - ("async and await make promises easier to write")
@@ -3818,36 +3882,52 @@ async function func() {
 }
 console.log( func());                         # Promise { 10 } |  Promise {<fulfilled>: 10}
 
-#
-async function delayedLog(item) {
-  await new Promise((resolve) => setTimeout(resolve, 2000));
-  console.log(item);
-}
+# REVISE
 
+# BELOW GIVEN 2 EXAMPLES ONE WITH FOREACH AND ANOTHER WITH FOR LOOP
 # WITH FOREACH CODE
   # - array.forEach does not wait for await delayedLog(item) to complete before starting the next iteration.
   # - All iterations start almost immediately and the delayedLog function is called concurrently for each item.
   # - "Process completed!" is logged before any of the delayedLog operations have completed, because forEach itself is not asynchronous and does not wait for the async function to resolve.
-// async function processArray(array) {
-//   array.forEach(async(item) => {
-//     await delayedLog(item);
-//   })
-// }
-# UNCOMMENT ABOVE PART AND COMMENT THIS (BELOW WILL WAIT EVERY 2 SECOND ABOVE WON'T)
 
 # WITH FOR-OF CODE
   # - Each delayedLog(item) waits for 2 seconds before logging the item.
   # - The next iteration starts only after the previous one has completed, leading to sequential execution.
   # - The total time taken will be 2 seconds * number of items in the array.
-async function processArray(array) {
-  for (const item of array) {
-    await delayedLog(item);
-  }
-  console.log("Process completed!"); # THIS WILL BE PRINTED 1ST OR LAST DEPENDING ON COMMENT
-}
 
+
+# example 1
+async function delayedLog(item) {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  console.log(item);
+}
+function processArray(array) {
+  array.forEach(async (item) => {
+    await delayedLog(item); # AFTER 2 SECOND ALL ITEMS WILL BE LOADED ALLTOGETHER
+  });
+  console.log("Process completed!"); # THIS WILL BE PRINTED FIRST
+}
 processArray([1, 2, 3, 4]);
 
+# example 2
+
+async function delayedLog(item) {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  console.log(item);
+}
+async function processArray(array) {
+  for (const item of array) {
+    await delayedLog(item); # WILL LOAD ONE BY ONE AFTER EVERY 2 SECONDS
+  }
+  console.log("Process completed!"); # THIS WILL BE PRINTED LAST
+}
+processArray([1, 2, 3, 4]);
+
+# Key Differences
+
+   # Concurrency vs. Sequential Execution: forEach runs all iterations concurrently without waiting, leading to simultaneous completion. In contrast, for...of with await ensures sequential execution, where each iteration waits for the previous one to complete.
+
+   # Execution Order: forEach does not manage asynchronous control flow, leading to all items being logged together after the delay. for...of manages the flow with await, ensuring items are logged one by one, each after a delay.
 
 ```
 
@@ -3920,7 +4000,7 @@ navigator.platform
 6. JS popup alert
 
 window.alert() :==> alert("I am an alert box!");
-# An alert box is often used if you want to make sure information comes through to the user.
+# An alert box is often used if you want to make sure information comes through the user.
 # When an alert box pops up, the user will have to click "OK" to proceed.
 
 window.confirm() :==> confirm("Press a button!")
@@ -3942,7 +4022,7 @@ setInterval(function, milliseconds) # repeats the execution of the function cont
 clearTimeout(variable) # stops the executions of the function specified in the setTimeout() method.
 clearInterval(variable) # stops the executions of the function specified in the setInterval() method.
 # you can technically use clearTimeout() and clearInterval() interchangeably. However, for clarity, you should avoid doing so.
-# eg. const x = setTimeout(function, milliseconds); then-> clearTimeout(x)
+# eg. const x = setTimeout(function, milliseconds); -then-> clearTimeout(x)
 
 const arr = [1, 2, 3, 4, 5];
 arr.forEach((i) => setTimeout(() => console.log(i), 1000));
@@ -4104,6 +4184,7 @@ clearWatch(); # Stops the watchPosition() method.
   - a date
   - undefined
   - function
+  - SYMBOL ?????
 
   # - [IF YOU SEND RAW FUNCTION THEN IT WILL AUTOMATICALLY BE REMOVED]
 const obj = {name: "John", age: function () {return 30;}, city: "New York"};
@@ -4246,6 +4327,17 @@ fn.profile = function (y) {
   #Profile code goes here
 };
 
+# EXAMPLE
+function one() {
+  console.log("I am one");
+}
+one.two = function () {
+  console.log("I am two");
+};
+one(); // I am one
+one.two(); // I am two
+
+
 9. What is the way to find the number of parameters expected by a function
 # You can use function.length syntax to find the number of parameters expected by a function. Let's take an example of sum function to calculate the sum of numbers,
 function sum(num1, num2, num3, num4) {
@@ -4270,11 +4362,20 @@ https://github.com/sudheerj/javascript-interview-questions?tab=readme-ov-file#wh
 
 # SPREAD OPERATOR
 The spread operator, denoted by three consecutive dots (...), is primarily used for expanding iterables like arrays into individual elements. This operator allows us to efficiently merge, copy, or pass array elements to functions without explicitly iterating through them.
-# Example
+# Example - 1
 const arr1 = [1, 2];
 const arr2 = [3, 4];
 console.log(...arr1, ...arr2); # 1, 2, 3, 4
 console.log([...arr1, ...arr2]); # [ 1, 2, 3, 4 ]
+
+# Example - 2
+const myObj = {
+  name: "Mahesh",
+  age: 23,
+};
+const newObj = { ...myObj, age: 2 };
+const newObj2 = { name: "Mahesh", age: 23, age: 2 }; # same as above, so it will override the existing age property
+const newObj = {  age: 2,...myObj, }; # ==> { age: 2, name: "Mahesh", age: 23 } -- so age won't change
 
 # REST OPERATOR
 While the spread operator expands elements, the rest operator(rest parameter) condenses them into a single entity within function parameters or array destructuring.
@@ -4549,7 +4650,7 @@ There are three main differences between arguments object and rest parameters
   - The rest parameters are only the ones that haven’t been given a separate name, while the arguments object contains all arguments passed to the function
 
 46. What is the difference between isNaN and Number.isNaN?
-
+# REVISE
 isNaN: The global function isNaN converts the argument to a Number and returns true if the resulting value is NaN.
 Number.isNaN: This method does not convert the argument. But it returns true when the type is a Number and value is NaN.
 # Example
@@ -4577,6 +4678,9 @@ undefined       | false             | false  | NaN           | true
 new Date("!")   | false             | false  | NaN           | true
 new Number(0/0) | false             | false  | NaN           | true
 "ABC" * "ABC"   | true              | true   | NaN           | true
+1 / "a"         | true              | true   | NaN           | true
+1 / "2"         | true              | false  | 0.5           | false
+100             | true              | false  | 100           | false
 # IF STRING OR OBJECTS,ETC (IF NOT NUMBER)
 
 47. How do you reverse an array without modifying original array?
@@ -4605,7 +4709,7 @@ console.log(newArray); // [ 5, 4, 3, 2, 1]
 
 48. What is debouncing?
 
-Debouncing is a programming pattern that allows delaying execution of some piece of code until a specified time to avoid unnecessary CPU cycles, API calls and improve performance. The debounce function make sure that your code is only triggered once per user input. The common usecases are Search box suggestions, text-field auto-saves, and eliminating double-button clicks.
+Debouncing is a programming pattern that allows delaying execution of some piece of code until a specified time - to avoid unnecessary CPU cycles, API calls and improve performance. The debounce function make sure that your code is only triggered once per user input. The common usecases are Search box suggestions, text-field auto-saves, and eliminating double-button clicks.
 
 # DEBOUNCING USING CLOSURE
 const debounceFn = (() => {
@@ -4693,6 +4797,27 @@ Both map and forEach functions are used to iterate over an arrays but there are 
 
   III. Mutation: The map method doesn't mutate the original array by returning new array. Whereas forEach method also doesn't mutate the original array but it's callback is allowed to mutate the original array.
 
+```
+
+- PRACTICE QUESTIONS (tricky)
+
+```bash
+function second() {
+  var message;
+  console.log(message);
+}
+
+function first() {
+  var message = "first";
+  second();
+  console.log(message);
+}
+
+var message = "default";
+first();
+console.log(message);
+
+# result:  undefined, first, default
 ```
 
 - PRACTICE QUESTIONS (mostly difficult)
