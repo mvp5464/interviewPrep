@@ -918,7 +918,7 @@ const Todos = ({ todos, addTodo }) => {
 # Here memo won't stop from rerendering as the "referance value" changes
 export default memo(Todos);
 # ########################################################
-# Every time a component re-renders, its functions get recreated. Because of this, the addTodo function has actually changed. -- AND "addTodo" FUNCTION CHANGE "addTodo" PROP
+# Every time a component re-renders, its functions get recreated. Because of this, the addTodo function has actually changed. -- AND "addTodo" FUNCTION CHANGE "addTodo" PROP - so Todos component will change although it uses memo
 # ########################################################
 
 ```
