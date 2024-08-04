@@ -83,7 +83,9 @@ ourTuple = [5, false, 'Coding']; # initialize correctly
 ourTuple = [false, 'Coding God was mistaken', 5]; # wrong order will also gives error
 console.log(ourTuple[0]); # To access 1st element
 
-const ourTuple: [string, number] = ["s", 2,2,4]; # YOU CAN WRITE ANY TYPE AFTER THIS SO CREATE READONLY TUPLES --NO IT IS GIVING ERROR
+const ourTuple: [string, number] = ["s", 2];
+ourTuple[0] = "q"; # YOU CAN CHANGE THE ARRAY VALUE SO USE READONLY TUPLES
+
 
 # READONLY TUPLES
 # define our readonly tuple - YOU CANNOT CHANGE IT LATER
@@ -134,7 +136,7 @@ const obj: { [index: string]: number } = { one: 1 };
 obj.two = 2; # Works fine
 obj.three = "three"; # Gives Error
 
-# Index signatures like this one can also be expressed with utility types like Record<string, number>.
+# Index signatures like this can also be expressed with utility types like Record<string, number>.
 ```
 
 - TypeScript Enums
@@ -152,13 +154,13 @@ enum CardinalDirections {
   South,
   West,
 }
-console.log(CardinalDirections.North);  # 0
-console.log(CardinalDirections.East);   # 1
-console.log(CardinalDirections["South"]);  # 2 # You can also call it this way
-console.log(CardinalDirections["West"]);   # 3
-console.log(CardinalDirections[1]);        # East
-console.log(CardinalDirections[3]);        # West
-console.log(CardinalDirections[0]);        # North
+console.log(CardinalDirections.North);      # 0
+console.log(CardinalDirections.East);       # 1
+console.log(CardinalDirections["South"]);   # 2 # You can also call it this way
+console.log(CardinalDirections["West"]);    # 3
+console.log(CardinalDirections[1]);         # East
+console.log(CardinalDirections[3]);         # West
+console.log(CardinalDirections[0]);         # North
 
 # Numeric Enums - Initialized::
 
