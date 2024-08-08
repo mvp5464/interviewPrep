@@ -311,6 +311,8 @@ const person: Person = {
         - Interface: Uses extends for inheritance.
         - Type: Uses intersection types (&) for combining types.
 
+    iv- Interface is used for object only BUT types are used for all (string, object, etc)
+
       4. Function Overloads:
         - Interface: Can define multiple function signatures (overloads).
         - Type: Can define function types but less naturally supports overloads.

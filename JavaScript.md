@@ -708,7 +708,7 @@ function myArrayMax(arr) {
 
 ```bash
 
-# ---------------> map, filter, reduce,[this 3 returns new array], -
+# ---------------> map, filter, reduce, [this 3 returns new array], -
 # foreach -> It does not return a new array and does not modify the original array.
 # --> some(), every(), include(), -> methods do not create or return a new array; they return a boolean value and do not modify the original array.
 const arr = [1, 2, 3, 4, 5];
@@ -1764,7 +1764,7 @@ console.log(NaN === NaN);                                      # false
 # REVISE
 # The variables such as objects, arrays and functions comes under pass by reference
 # so comparing them will always returns false
-{} === {}, [] === []
+{} === {}, [] === [], {} == {}, [] == []
 ```
 
 - JavaScript Destructuring
@@ -3848,6 +3848,47 @@ Promise.all([promiseOne, promiseTwo]).then((data) => console.log(data));
 Promise.allSettled([promiseOne, promiseTwo]).then((data) => console.log(data));
 
 # The above promises settled at the same time but one of them resolved and other one rejected. When you use .all method on these promises, the result will be short circuted by throwing an error due to rejection in second promise. But If you use .allSettled method then result of both the promises will be returned irrespective of resolved or rejected promise status without throwing any error.
+
+# //promise.all----if 1 promise rejected then all will be rejected (if 1 promise resolved then all will be resolved){returns array}
+# // let p3 = Promise.allSettled([prom1, prom2]);
+
+# //promise.allSettled----wait for all promises to settled(resolved/rejected) then return an array of object of their status & value/reason
+# // let p3 = Promise.allSettled([prom1, prom2]);
+
+# //Promise.race----result/error of first promise to settle becomes it''s outcomes
+# // let p3 = Promise.race([prom1, prom2]); //Promise.race(promises);
+
+# //Promise.any----output is 1st promise to resolved/fulfilled (rejected promises are not counted)
+# // let p3 = Promise.any([prom1, prom2]); //Promise.any(promises);
+
+# //Promise.resolve---it seems that the promise is resolved (also if rejected then show resolved){Creates a new resolved promise for the provided value.}
+# // let p3 = Promise.resolve([prom1, prom2]); //Promise.resolve(value);
+
+# //Promise.reject----Creates a new rejected promise for the provided reason.(show all promises as rejected)
+# // let p3 = Promise.reject([prom1, prom2]); // Promise.reject(error);
+
+/////////////...............{{ JavaScript Promise Methods }}
+
+// There are various methods available to the Promise object.
+
+// all(iterable) --	Waits for all promises to be resolved or any one to be rejected
+
+// allSettled(iterable) -- Waits until all promises are either resolved or rejected
+
+// any(iterable) -- Returns the promise value as soon as any one of the promises is fulfilled
+
+// race(iterable) -- Wait until any of the promises is resolved or rejected
+
+// reject(reason) -- Returns a new Promise object that is rejected for the given reason
+
+// resolve(value) -- Returns a new Promise object that is resolved with the given value
+
+// catch() -- Appends the rejection handler callback
+
+// then() -- Appends the resolved handler callback
+
+// finally() -- Appends a handler to the promise
+
 ```
 
 - JavaScript Async - ("async and await make promises easier to write")
