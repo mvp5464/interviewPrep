@@ -4836,7 +4836,25 @@ Both map and forEach functions are used to iterate over an arrays but there are 
 
   II. Chaining methods: The map method is chainable. i.e, It can be attached with reduce, filter, sort and other methods as well. Whereas forEach cannot be attached with any other methods because it returns undefined value.
 
-  III. Mutation: The map method doesn't mutate the original array by returning new array. Whereas forEach method also doesn't mutate the original array but it's callback is allowed to mutate the original array.
+  III. Mutation: The map method doesn''t mutate the original array by returning new array. Whereas forEach method also doesn't mutate the original array but it's callback is allowed to mutate the original array.
+
+54. Fetch method
+
+  //   const response = await fetch(url, {
+  //     method: "POST", # *GET, POST, PUT, DELETE, etc.
+  //     mode: "cors", # no-cors, *cors, same-origin
+  //     cache: "no-cache", # *default, no-cache, reload, force-cache, only-if-cached
+  //     credentials: "same-origin", # include, *same-origin, omit
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       // 'Content-Type': 'application/x-www-form-urlencoded',
+  //     },
+  //     redirect: "follow", # manual, *follow, error
+  //     referrerPolicy: "no-referrer", # no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+  //     body: JSON.stringify(data), # body data type must match "Content-Type" header
+  //   });
+  //   return response.json(); # parses JSON response into native JavaScript objects [RETURN IT]
+  // }
 
 ```
 
