@@ -4751,6 +4751,7 @@ console.log(newArray); // [ 5, 4, 3, 2, 1]
 48. What is debouncing?
 
 Debouncing is a programming pattern that allows delaying execution of some piece of code until a specified time - to avoid unnecessary CPU cycles, API calls and improve performance. The debounce function make sure that your code is only triggered once per user input. The common usecases are Search box suggestions, text-field auto-saves, and eliminating double-button clicks.
+- Debouncing vs RateLimiting vs Throttling
 
 # DEBOUNCING USING CLOSURE
 const debounceFn = (() => {
