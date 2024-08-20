@@ -112,7 +112,7 @@ myObj["myCars"].car2;
 # accessing object method
 name = person.fullName();
 
-# CHECKING WHETHER A PROPERTY EXISTS ON AN OBJECT OR NOT
+# CHECKING WHETHER A PROPERTY EXISTS ON AN OBJECT OR NOT (REVISE)
 const person = {
   name: "John",
   age: 30,
@@ -225,6 +225,17 @@ new RegExp();   // A new RegExp object =or=> /()/
 new Function(); // A new Function object =or=> () {}
 
 #NOTE:: The Math() object is not in the list. Math is a global object. The new keyword cannot be used on Math.
+
+# CHECK IF IT'S AN OBJECT OR NOT (REVISE)
+
+const arr = [1, 2, 3, 4, 5];
+const obj = { name: "Mahesh", age: 33 };
+const nully = null;
+
+console.log(!!obj && obj.constructor === Object); // true
+console.log(!!arr && arr.constructor === Object); // false
+console.log(!!nully && nully.constructor === Object); // false
+
 ```
 
 - JavaScript Strings as Objects: (Avoid this -> new String())
@@ -261,7 +272,7 @@ let part = text.slice(-2); # only last two
 # substr(start, length)
 
 let text2 = text1.toUpperCase();
-let text2 = text1.toLowerCase();.
+let text2 = text1.toLowerCase();
 
 let text3 = text1.concat(" ", text2);
 let text3 = "Hello" + " " + "World!"; # same as above
@@ -583,11 +594,11 @@ const newArr = myArr.flat(Infinity); # [ 1, 2, 3, 4, 5, 6, 7 ]
 const fruits = ["Banana", "Orange", "Apple", "Mango"];
 fruits.splice(2, 0, "Lemon", "Kiwi"); # (start, deleteCount, ...items). IT WILL ADD ONLY
 fruits.splice(3, 1); # here 1 item from 3rd position will be removed from the array
-# Splice method modifies the original array and returns the deleted array.
+# Splice method modifies the original array and returns the deleted array.[[[[[[]]]]]]
 
 const fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
 const citrus = fruits.slice(3); # [ 'Apple', 'Mango' ]
-const citrus = fruits.slice(1, 3); # [ 'Orange', 'Lemon' ]
+const citrus = fruits.slice(1, 3); # [ 'Orange', 'Lemon' ] [[[[[[[[[]]]]]]]]]
 # Slice method doesn't mutate the original array but it returns the subset as a new array.
 
 # All JavaScript objects have a toString() method.
@@ -742,7 +753,7 @@ const fil4 = arr.filter((i) => i % 2 === 0);
 const red1 = arr.reduce((i) => i * 0); # As all element will return false
 const red2 = arr.reduce((i) => i * 1); # -----> I IS PREVIOUS VALUE AND NOT CURRENT VALUE
 const red3 = arr.reduce((i) => i * 2); # every element will be double starting from 1st element
-const red4 = arr.reduce((i) => i % 2 === 0); # A??? if %6 then why returning true
+const red4 = arr.reduce((i) => i % 2 === 0); # A??? if %6 then why returning true(ans below)
 
 console.log({ for1 }); # undefined
 console.log({ for2 }); # undefined
@@ -1451,7 +1462,7 @@ for (const x of letters.entries()) {
 
 - JavaScript Maps
 
-- A Map holds key-value pairs where the keys can be any datatype.
+- A Map holds key-value pairs where the keys can be of any datatype.
 - A Map remembers the original insertion order of the keys. [WHICH VALUE INSERTED 1ST]
 - Keys are unique ? [ YES ]
 - Maps accept any data type as a key, and do not allow duplicate key values.
@@ -1705,7 +1716,7 @@ true.toString()                             # returns "true"
 
 7.----- Automatic Type Conversion
 
-5 + null                  # returns 5         # because null is converted to 0
+5 + null                  # returns 5         # because null is converted to 0 [REVISE]
 "5" + null                # returns "5null"   # because null is converted to "null"
 "b" + 2                   # returns "b2"      # because b is converted to "b"
 "5" + 2                   # returns "52"      # because 2 is converted to "2"
@@ -1733,7 +1744,7 @@ myVar.toString()
 # TLDR
 console.log(Boolean("0"));                                     # true
 console.log(Boolean(0));                                       # false
-console.log(Boolean(NaN));                                     # false
+console.log(Boolean(NaN));                                     # false [[]]
 console.log(Boolean("NaN"));                                   # true
 console.log(Boolean(Infinity));                                # true
 console.log(Boolean(""));                                      # false # empty string is false
@@ -2155,7 +2166,7 @@ for (var a = 0; a < 4; a++) {
 for (var a = 0; a < 4; a++) {
   (function () {
     setTimeout(() => console.log(a), 2000);
-  })();  # 4,4,4,4 // without passing any variable here and wihtout assigning value to any variable at the time of looping
+  })();  # 4,4,4,4 // without passing any variable here and without assigning value to any variable at the time of looping
 }
 
 # since ‘var’ variables are not block scoped, we did not create a new variable, instead we just re-assigned the existing variable and gave it new value
@@ -2174,7 +2185,7 @@ FOR EXPLAINATION : https://medium.com/@jubomdivnishvili/the-mystery-behind-setti
   - Hoisting applies to variable declarations(eg x=1) and to function declarations(eg function(){}) [and not Function Expressions (eg. const a = function() {})]- [Arrow function is also type of function expression ]
   - class declarations are not hoisted
 
-- TLDR : Only the declaration of var(var x;)[can declare before it is used] is hoisted(moved to top), but initializing/assigning of value(x = 2;) needs to be applied before it is used (else x = undefined)::: (let will give referance error if not declared before and const gives syntex error as we can't reassigne a value)
+- TLDR : Only the declaration of var(var x;)[can declare before it is used] is hoisted(moved to top), but initializing/assigning of value(x = 2;) needs to be applied before it is used (else x = undefined and not error)::: (let will give referance error if not declared before and const gives syntex error as we can't reassigne a value)
 
 - Variables defined with let and const are hoisted to the top of the block, but not initialized.
 - Meaning: The block of code is aware of the variable, but it cannot be used until it has been declared.
@@ -3131,7 +3142,7 @@ let text = myFunction.toString(); # give whole function as string
 # Arrow functions allows a short syntax for writing function expressions.
 # Arrow functions do not have their own this. They are not well suited for defining object methods.(funciton(name){this.name=name})
 # Arrow functions are not hoisted. They must be defined before they are used.
-# Duplicate parameter name not allowed in arrow function in any mode, strict or non-strict @@@@@@
+# Duplicate parameter name not allowed in arrow function in any mode, strict or non-strict @@@@@@ [REVISE]
 # ( allowed in function expression and function declaration in non-strict mode)
 # Arrow functions do not have an arguments, super, this, or new.target bindings.
 
@@ -3674,11 +3685,11 @@ async1(function(){
   - Functions running in parallel with other functions are called asynchronous
   - eg. setTimeout()
 
-CALLBACK VS PROMISE VS ASYNC/AWAIT -> SAME EXAMPLES
+CALLBACK VS PROMISE VS ASYNC/AWAIT -> WITH SAME EXAMPLES
 
 ```bash
 https://www.freecodecamp.org/news/javascript-asynchronous-operations-in-the-browser/
-# BELOW EXECUTIONS TAKES PLACE INSIDE JS RUNTIME
+# BELOW EXECUTION TAKES PLACE INSIDE JS RUNTIME
 callstack (inside js engine) -> webapi -> callback/event queue -> event loop
 
 # JS ENVIRONMENT
@@ -3793,14 +3804,14 @@ myPromise.then(
 # CHATGTP IS SAYING THAT THIS CODE SHOULD GIVE ERROR BUT THIS CODE IS NOT GIVING ERROR
 
 # CALLBACK
-setTimeout(() => myFunction("I love You !!!"), 2000);
-const myFunction = (value) => { ####### HOW THIS DON'T GIVE ERROR AS IT IS CALLED ABOVE IT
+setTimeout(() => myFunction("I love JS !!!"), 2000);
+const myFunction = (value) => { ####### HOW THIS DON'T GIVE ERROR AS IT IS CALLED ABOVE IT --- [may be because setTimeout will wait and it will take myFunction reference. when it executes it have the value of this myFunction]
   console.log(value);
 };
 
 # PROMISE
 let myPromise = new Promise((myResolve, myReject) => {
-  setTimeout(() => myResolve("I love You !!"), 3000);
+  setTimeout(() => myResolve("I love JS !!"), 3000);
 });
 myPromise.then((value) => console.log(value));
 
@@ -3849,7 +3860,7 @@ Promise.allSettled([promiseOne, promiseTwo]).then((data) => console.log(data));
 
 # The above promises settled at the same time but one of them resolved and other one rejected. When you use .all method on these promises, the result will be short circuted by throwing an error due to rejection in second promise. But If you use .allSettled method then result of both the promises will be returned irrespective of resolved or rejected promise status without throwing any error.
 
-# //promise.all----if 1 promise rejected then all will be rejected (if 1 promise resolved then all will be resolved){returns array}
+# //promise.all----if 1 promise rejected then all will be rejected (if 1 promise resolved then all will be resolved???){returns array}
 # // let p3 = Promise.allSettled([prom1, prom2]);
 
 # //promise.allSettled----wait for all promises to settled(resolved/rejected) then return an array of object of their status & value/reason
@@ -4447,7 +4458,7 @@ const arr2 = [3, 4];
 
 sum(...arr1, ...arr2); // 1, 2, 3, 4 # SPREAD OPERATOR
 
-14. What is the purpose of using object is method
+14. What is the purpose of using object-is method
 
 # Example
 Object.is("hello", "hello"); // true
