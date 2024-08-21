@@ -123,7 +123,7 @@ i. <Link> Component
 
 # Checking Active Links :: -> You can use usePathname() to determine if a link is active.
 # WHAT ACTIVE MEANS
-# Eg. In navbar if the page is home then make it active else if the page is about then make it
+# Eg. In navbar if the page is home then make it active else if the page is about then don't
 <li>
   <Link className={`link ${pathname === '/' ? 'active' : ''}`} href="/">
     Home
@@ -282,7 +282,7 @@ redirects in next.config.js   - Redirect user after a mutation or event(serversi
 NextResponse.redirect         - Redirect an incoming request based on a condition(Middleware)
 
 i. redirect
-# The redirect function allows you to redirect the user to another URL. You can call redirect in Server Components, Route Handlers, and Server Actions.
+# The redirect function allows you to redirect the user to another URL. You can call redirect in Server Components, Route Handlers, and Server Actions. [DIFFERENCES BETWEEN THEM ????]
 
 # redirect internally throws an error so it should be called outside of try/catch blocks.
 # redirect can be called in Client Components during the rendering process but not in event handlers. You can use the useRouter hook instead.
@@ -381,7 +381,7 @@ export const config = {
 7. Route Groups - "(folderName)"
    - To prevent the folder from being included in the route's URL path.
    - This allows you to organize your route segments and project files into logical groups without affecting the URL path structure.
-   - Even though routes inside (marketing) and (shop) share the same URL hierarchy, you can create a different layout for each group by adding a layout.js file inside their folders.
+   - Even though routes inside (marketing) and (shop) share the same URL hierarchy [IN BELOW EXAMPLE], you can create a different layout for each group by adding a layout.js file inside their folders.
 
 ```bash
 
@@ -540,8 +540,8 @@ export default function Layout({
   analytics,
 }: {
   children: React.ReactNode
-  analytics: React.ReactNode
   team: React.ReactNode
+  analytics: React.ReactNode
 }) {
   return (
     <>
@@ -639,7 +639,7 @@ export async function GET() {
   })
   const data = await res.json()
   return Response.json({ data })
- } # data IS CACHED HERE AS ONLY GET()
+ } # data IS CACHED HERE AS ONLY GET() METHOD IS USED WITHOUT REQUEST OBJECT
 
 II. Opting out of caching
   # Using the Request object with the GET method.
@@ -1455,7 +1455,7 @@ export default function Page() {
 
 ```bash
 1. Request Memoization	-- Re-use data in a React Component tree
-2. Data Cache -- Store data across user requests and deployments	(revalidated)
+2. Data Cache -- Store data across user requests and deployments (revalidated)
 3. Full Route Cache --	Reduce rendering cost and improve performance	Persistent (revalidated)
 4. Router Cache --	Reduce server requests on navigation - THIS ON CLIENT ALL OTHER ON SERVER
 
