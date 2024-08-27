@@ -4949,3 +4949,5 @@ console.timeEnd("Second Call");
 ```
 
 display:none turns off the layout of the elements, so they are not rendered. visibility:hidden hides the elements without changing their layouts. opacity:0 causes the elements to be very transparent but users can still interact with them.
+
+difference between foreach and for-of loop
