@@ -54,7 +54,7 @@ typeof (3 + 4);           // Returns "number"
   - || => If the first value is false, the second value is assigned.
   - ?? => If the first value is undefined or null, the second value is assigned.
 
-- 8 Datatypes: String,Number, Bigint, Boolean, Undefined, Null, Symbol, Object
+- 8 Datatypes: String, Number, Bigint, Boolean, Undefined, Null, Symbol, Object
 
   - The object data type can contain both built-in objects, and user defined objects:
   - objects, arrays, dates, maps, sets, intarrays, floatarrays, promises, maths, functions,.. are build-in objects (All JavaScript values, except primitives, are objects.)
